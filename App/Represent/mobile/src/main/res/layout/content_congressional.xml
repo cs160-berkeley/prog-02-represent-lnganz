@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:id="@+id/repImageButton1"
+            android:src="@drawable/mark"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:onClick="startDetailedActivity" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/repText1"
+            android:text="@string/repTextPlaceholder" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1" >
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:id="@+id/repImageButton2"
+            android:src="@drawable/dianne"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:onClick="startDetailedActivity" />
+
+        <TextView
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/repText2"
+            android:text="@string/repTextPlaceholder" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1" >
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:id="@+id/repImageButton3"
+            android:src="@drawable/barbara"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:onClick="startDetailedActivity" />
+
+        <TextView
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/repText3"
+            android:text="@string/repTextPlaceholder" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Vote Results For This Area"
+        android:id="@+id/voteButton"
+        android:layout_gravity="center_horizontal"
+        android:onClick="startWatchVoteActivity" />
+
+</LinearLayout>

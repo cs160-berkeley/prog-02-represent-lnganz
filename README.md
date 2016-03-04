@@ -1,14 +1,14 @@
 # PROG 02: Represent!
 
-Briefly describe your app here.
+Represent! lets you know what your Congressional Representatives have been up to recently.
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Lennon Ganz ([lnganz@berkeley.edu](mailto:lnganz@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
+See "CS160 Represent! PROG-02-B" (https://youtu.be/vKnBouTV0sQ)
 
 ## Screenshots
 

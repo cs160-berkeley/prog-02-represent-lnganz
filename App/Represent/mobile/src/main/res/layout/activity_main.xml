@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@drawable/flag"
+    android:gravity="center">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/zipText"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:hint="ZIP Code"
+        android:gravity="center"
+        android:layout_marginTop="200dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use ZIP Code"
+        android:id="@+id/zipButton"
+        android:layout_gravity="center_horizontal"
+        android:onClick="useZipCode" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use Current Location"
+        android:id="@+id/locationButton"
+        android:layout_gravity="center_horizontal"
+        android:onClick="startCongressionalActivity" />
+</LinearLayout>

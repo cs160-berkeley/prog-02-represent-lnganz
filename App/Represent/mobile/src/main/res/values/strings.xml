@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Represent</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_congressional">Your Representatives</string>
+    <string name="repTextPlaceholder">THIS IS THE PLACEHOLDER TEXT. LATER THERE WILL BE OTHER TEXT HERE.</string>
+    <string name="title_activity_detailed">Detailed View</string>
+    <string name="rep_names_placeholder">Mark DeSaulnier;Dianne Feinstein;Barbara Boxer</string>
+    <string name="mark_congressional_placeholder">Rep. Mark DeSaulnier (D)\n\nEmail: mdesaulnier@domain.gov\nWebsite: www.desaulnier.house.gov\nRecent Tweet: HELLO WORLD</string>
+    <string name="dianne_congressional_placeholder">Sen. Dianne Feinstein (D)\n\nEmail: dfeinstein@domain.gov\nWebsite: www.feinstein.senate.gov\nRecent Tweet: HELLO WORLD</string>
+    <string name="barbara_congressional_placeholder">Sen. Barbara Boxer (D)\n\nEmail: bboxer@domain.gov\nWebsite: www.boxer.senate.gov\nRecent Tweet: HELLO WORLD</string>
+    <string name="mark_detailed_placeholder"><![CDATA[Congressional term ends January 3, 2017\n\n-Committees-\nEducation and the Workforce Committee\nOversight and Government Reform Committee\n\n-Recently Sponsored Bills-\n(12/10/15) H.R> 4228: Transportation Megaprojects Accountability and Oversight Act of 2015\n(10/21/15) H.R. 3787: Metropolitan Planning Enhancement Act\n(10/01/15) H.R. 3675: Student Borrower Fairness Act]]></string>
+    <string name="frank_congressional_placeholder">Rep. Frank Lucas (R)\n\nEmail: flucas@domain.gov\nWebsite: www.lucas.house.gov\nRecent Tweet: HELLO WORLD</string>
+    <string name="jim_congressional_placeholder">Sen. Jim Inhofe (R)\n\nEmail: jinhofe@domain.gov\nWebsite: www.inhofe.senate.gov\nRecent Tweet: HELLO WORLD</string>
+    <string name="james_congressional_placeholder">Sen. James Lankford (R)\n\nEmail: jlankford@domain.gov\nWebsite: www.lankford.senate.gov\nRecent Tweet: HELLO WORLD</string>
+</resources>
