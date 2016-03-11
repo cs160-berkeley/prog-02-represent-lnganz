@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_id": "represent-d749c",
+    "project_number": "134282854630",
+    "name": "Represent"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134282854630:android:57f1158129325647",
+        "client_id": "android:com.represent.sigma.represent",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.represent.sigma.represent",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134282854630-jhb230cabcdrpd3tg9vskqpsp5ta5ufl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.represent.sigma.represent",
+            "certificate_hash": "B09EB7BC048C472B3C6A23314C368B043A9C7BBD"
+          }
+        },
+        {
+          "client_id": "134282854630-o436i73qr5oq0807sebbjq1gc7hh7pfs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

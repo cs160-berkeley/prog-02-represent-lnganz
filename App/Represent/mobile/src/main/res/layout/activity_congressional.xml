@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -9,101 +9,116 @@
     android:background="@drawable/flag"
     android:gravity="center_horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Location"
-        android:id="@+id/locationText"
-        android:layout_gravity="center_horizontal"
-        android:typeface="normal"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:background="@drawable/rounded_corner"
-        android:paddingRight="50dp"
-        android:paddingLeft="50dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:layout_marginBottom="5dp" />
-
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:weightSum="1"
-        android:background="@drawable/rounded_corner">
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="110dp"
-            android:id="@+id/repImageButton1"
-            android:src="@drawable/mark"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:onClick="startDetailedActivity" />
+        android:id="@+id/repOuterLayout">
 
         <TextView
-            android:layout_width="231dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/repText1"
-            android:text="@string/mark_congressional_placeholder" />
-    </LinearLayout>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Location"
+            android:id="@+id/locationText"
+            android:layout_gravity="center_horizontal"
+            android:typeface="normal"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:background="@drawable/rounded_corner"
+            android:paddingRight="50dp"
+            android:paddingLeft="50dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:layout_marginBottom="5dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:background="@drawable/rounded_corner"
-        android:layout_marginTop="10dp">
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="110dp"
-            android:id="@+id/repImageButton2"
-            android:src="@drawable/dianne"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:onClick="startDetailedActivity" />
-
-        <TextView
-            android:layout_width="231dp"
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/twitter_login_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/repText2"
-            android:text="@string/dianne_congressional_placeholder" />
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal|bottom" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:background="@drawable/rounded_corner"
-        android:layout_marginTop="10dp">
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="110dp"
-            android:id="@+id/repImageButton3"
-            android:src="@drawable/barbara"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:onClick="startDetailedActivity" />
-
-        <TextView
-            android:layout_width="231dp"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/repText3"
-            android:text="@string/barbara_congressional_placeholder" />
+            android:weightSum="1"
+            android:background="@drawable/rounded_corner"
+            android:id="@+id/repLayout1">
+
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="110dp"
+                android:id="@+id/repImageButton1"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:onClick="startDetailedActivity" />
+
+            <TextView
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/repText1"
+                android:text="@string/mark_congressional_placeholder" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:background="@drawable/rounded_corner"
+            android:layout_marginTop="10dp"
+            android:id="@+id/repLayout2">
+
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="110dp"
+                android:id="@+id/repImageButton2"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:onClick="startDetailedActivity" />
+
+            <TextView
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/repText2"
+                android:text="@string/dianne_congressional_placeholder" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:background="@drawable/rounded_corner"
+            android:layout_marginTop="10dp"
+            android:id="@+id/repLayout3">
+
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="110dp"
+                android:id="@+id/repImageButton3"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:onClick="startDetailedActivity" />
+
+            <TextView
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/repText3"
+                android:text="@string/barbara_congressional_placeholder" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Vote Results For This Area"
+            android:id="@+id/voteButton"
+            android:layout_gravity="center_horizontal"
+            android:onClick="startWatchVoteActivity" />
+
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Vote Results For This Area"
-        android:id="@+id/voteButton"
-        android:layout_gravity="center_horizontal"
-        android:onClick="startWatchVoteActivity" />
-
-</LinearLayout>
+</ScrollView>

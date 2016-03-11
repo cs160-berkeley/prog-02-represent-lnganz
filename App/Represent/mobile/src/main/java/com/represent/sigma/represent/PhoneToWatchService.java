@@ -19,6 +19,8 @@ public class PhoneToWatchService extends Service {
     private String repNames;
     private String activity;
     private int repSet;
+    private String reps;
+    private String votes;
 
     @Override
     public void onCreate() {
@@ -48,10 +50,14 @@ public class PhoneToWatchService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Which cat do we want to feed? Grab this info from INTENT
         // which was passed over when we called startService
+        String path;
+        String message;
         Bundle extras = intent.getExtras();
         repNames = extras.getString("REP_NAMES");
-        activity = extras.getString("ACTIVITY");
-        repSet = extras.getInt("RepSet");
+        activity = extras.getString("Activity");
+        reps = extras.getString("Reps");
+        votes = extras.getString("Votes");
+//        repSet = extras.getInt("RepSet");
 
         // Send the message with the cat name
         new Thread(new Runnable() {
@@ -60,7 +66,15 @@ public class PhoneToWatchService extends Service {
                 //first, connect to the apiclient
                 mApiClient.connect();
                 //now that you're connected, send a message with the representative name
-                sendMessage("/activity", new String(activity + ";" + repSet));
+                if (activity != null) {
+                   if (activity.equalsIgnoreCase("MainActivity")) {
+                       sendMessage("/MainActivity", reps);
+                   } else if (activity.equalsIgnoreCase("VoteActivity")) {
+                       sendMessage("/VoteActivity", votes);
+                   } else if (activity.equalsIgnoreCase("BothActivities")) {
+                       sendMessage("/BothActivities", reps + ";" + votes);
+                   }
+                }
 //                    if (activity != null && activity.equals("VoteActivity")) {
 //                    if (repSet != 0) {
 //                        sendMessage("/rep_set", "" + repSet);

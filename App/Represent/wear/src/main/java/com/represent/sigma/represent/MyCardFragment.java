@@ -46,10 +46,14 @@ public class MyCardFragment extends Fragment implements View.OnClickListener {
         repName = args.getString("Name");
         repParty = args.getString("Party");
         TextView tv = (TextView) fragmentView.findViewById(R.id.cardRepName);
-        if (repName.equals("Mark DeSaulnier") || repName.equals("Frank Lucas")) {
-            tv.setText("Rep. " + repName + " " + repParty);
+        if (repParty.equalsIgnoreCase("(D)")) {
+            tv.setText(repName + "\nDemocrat");
+        } else if (repParty.equalsIgnoreCase("R")) {
+            tv.setText(repName + "\nRepublican");
+        } else if (repParty.equalsIgnoreCase("I")) {
+            tv.setText(repName + "\nIndependent");
         } else {
-            tv.setText("Sen. " + repName + " " + repParty);
+            tv.setText(repName);
         }
 
         fragmentView.setOnClickListener(new View.OnClickListener() {

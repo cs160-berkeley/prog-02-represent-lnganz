@@ -43,6 +43,9 @@
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
             </intent-filter>
         </service>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBYLatfWm2MYM8fXPFKuviOfr-2cU6daTo" />
     </application>
 
 </manifest>

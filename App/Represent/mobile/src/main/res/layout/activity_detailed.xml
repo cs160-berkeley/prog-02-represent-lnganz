@@ -16,17 +16,22 @@
         android:layout_width="151dp"
         android:layout_height="200dp"
         android:id="@+id/repImage"
-        android:src="@drawable/mark"
         android:layout_weight="0.21"
         android:layout_gravity="center_horizontal" />
 
-    <TextView
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mark_detailed_placeholder"
-        android:id="@+id/repDetailedText"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/rounded_corner"
-        android:padding="10dp" />
+        android:id="@+id/scrollView" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mark_detailed_placeholder"
+            android:id="@+id/repDetailedText"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/rounded_corner"
+            android:padding="10dp" />
+    </ScrollView>
 
 </LinearLayout>

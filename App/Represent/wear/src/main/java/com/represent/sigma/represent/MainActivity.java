@@ -49,16 +49,20 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         // My Setup
         final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
         Intent intent = getIntent();
-        int repSet = intent.getIntExtra("RepSet", 0);
-        if (repSet != 0) {
-            Log.d("T", "repSet == " + repSet + " in Watch's MainActivity");
-            pager.setAdapter(new MyGridPagerAdapter(this, getFragmentManager(), repSet));
+//        int repSet = intent.getIntExtra("RepSet", 0);
+        String reps = intent.getStringExtra("Reps");
+        if (reps != null) {
+//            String[] parsedReps = reps.split(";");
+            pager.setAdapter(new MyGridPagerAdapter(this, getFragmentManager(), reps));
         } else {
             Log.d("T", "repSet == null in Watch's MainActivity");
             TextView tv = (TextView) findViewById(R.id.titleText);
-            tv.setText("Represent!");
-//            pager.setAdapter(new MyGridPagerAdapter(this, getFragmentManager()));
+            tv.setText(R.string.TitleText);
         }
+//        if (repSet != 0) {
+//            Log.d("T", "repSet == " + repSet + " in Watch's MainActivity");
+//            pager.setAdapter(new MyGridPagerAdapter(this, getFragmentManager(), repSet));
+//        }
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -98,7 +102,7 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         Intent intent = new Intent(getBaseContext(), WatchToPhoneService.class);
 //        intent.putExtra("Task", "Randomize");
         intent.putExtra("Activity", "Randomize");
-        intent.putExtra("Representative", "Mark DeSaulnier");
+//        intent.putExtra("Representative", "Mark DeSaulnier");
         startService(intent);
 //        intent = new Intent(getBaseContext(), VoteActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

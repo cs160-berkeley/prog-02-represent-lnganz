@@ -34,6 +34,5 @@
         android:layout_height="wrap_content"
         android:text="Use Current Location"
         android:id="@+id/locationButton"
-        android:layout_gravity="center_horizontal"
-        android:onClick="startCongressionalActivity" />
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

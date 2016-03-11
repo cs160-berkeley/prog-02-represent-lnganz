@@ -55,6 +55,31 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
 //        PAGES[1][0] = new Page(null, "TEXT1-0", R.drawable.ic_full_cancel, R.drawable.barbara);
     }
 
+    public MyGridPagerAdapter(Context ctx, FragmentManager fm, String reps) {
+        super(fm);
+        mContext = ctx;
+        // A simple container for static data in each page
+        // Create a static set of pages in a 2D array
+        PAGES = new Page[1][3];
+        String[] repList = reps.split(";");
+        if (repList[0].equalsIgnoreCase("house")) {
+            PAGES[0][0] = new Page("Representative\n" + repList[1], repList[2], R.drawable.test50x50, R.drawable.flag);
+        } else {
+            PAGES[0][0] = new Page("Senator\n" + repList[1], repList[2], R.drawable.test50x50, R.drawable.flag);
+        }
+        if (repList[3].equalsIgnoreCase("house")) {
+            PAGES[0][1] = new Page("Representative\n" + repList[4], repList[5], R.drawable.test50x50, R.drawable.flag);
+        } else {
+            PAGES[0][1] = new Page("Senator\n" + repList[4], repList[5], R.drawable.test50x50, R.drawable.flag);
+        }
+        if (repList[6].equalsIgnoreCase("house")) {
+            PAGES[0][2] = new Page("Representative\n" + repList[7], repList[8], R.drawable.test50x50, R.drawable.flag);
+        } else {
+            PAGES[0][2] = new Page("Senator\n" + repList[7], repList[8], R.drawable.test50x50, R.drawable.flag);
+
+        }
+    }
+
 
     static final int[] BG_IMAGES = new int[] {
             R.drawable.card_background, R.drawable.card_background
@@ -64,6 +89,7 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
         // static resources
         String title;
         String text;
+        int repIndex;
         int iconId;
         int backgroundId;
 
