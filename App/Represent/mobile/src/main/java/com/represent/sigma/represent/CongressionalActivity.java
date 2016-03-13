@@ -10,6 +10,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +52,7 @@ public class CongressionalActivity extends AppCompatActivity {
 
     private TwitterLoginButton loginButton;
     private LinearLayout tweetParentView;
-    public ArrayList<Representative> repList;
+    public static ArrayList<Representative> repList;
     private int repSet;
     private String county;
     private String stateAbr;
@@ -65,15 +67,15 @@ public class CongressionalActivity extends AppCompatActivity {
         county = intent.getStringExtra("County");
         stateAbr = intent.getStringExtra("State");
 
+        findViewById(R.id.repLayout1).setVisibility(View.GONE);
+        findViewById(R.id.repLayout2).setVisibility(View.GONE);
+        findViewById(R.id.repLayout3).setVisibility(View.GONE);
         if (repList == null || repList.size() < 3) {
             initializeRepresentatives();
         }
         testThatWeGotReps();
 
         //My Setup
-//        getActionBar().setDisplayHomeAsUpEnabled(true);
-//        setTitle("Congressional Representatives in 94596");
-        repSet = intent.getIntExtra("RepSet", 1);
 
         updateLayout();
 
@@ -97,6 +99,7 @@ public class CongressionalActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
 
                     getRecentTweets();
+                    loginButton.setVisibility(View.GONE);
 
                 }
 
@@ -106,25 +109,6 @@ public class CongressionalActivity extends AppCompatActivity {
                 }
             });
         }
-
-
-//        TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
-//        StatusesService statusesService = twitterApiClient.getStatusesService();
-//        statusesService.userTimeline(null, "ArchonNadia", 1, null, null, null, null, null, null, new Callback<List<Tweet>>() {
-//            @Override
-//            public void success (Result<List<Tweet>> result) {
-//                Log.d("CongressionalActivity", "Got tweet" + result.toString());
-////                TweetView tweetView = new TweetView(CongressionalActivity.this, result.data);
-////                parentView.addView(tweetView, 4);
-////                Log.d("CongressionalActivity", );
-//            }
-//            @Override
-//            public void failure(TwitterException e) {
-//                Log.d("CongressionalActivity", "Couldn't get tweet for some reason");
-//                e.printStackTrace();
-//            }
-//        });
-//        getAndShowTweets();
 
     }
 
@@ -137,11 +121,12 @@ public class CongressionalActivity extends AppCompatActivity {
                 Log.d("CongressionalActivity", "Got tweet: " + result.toString());
                 Tweet tweet = result.data.get(0);
                 TweetView tweetView = new TweetView(CongressionalActivity.this, tweet);
-                tweetParentView.addView(tweetView, 3);
+                tweetParentView.addView(tweetView, 4);
                 String imgUrl = tweet.user.profileImageUrl;
                 imgUrl = imgUrl.replaceAll("_normal", ""); // Remove _normal from end of url to get full-size image
                 repList.get(0).imageUrl = imgUrl;
                 Log.d("CongressionalActivity", "Twitter Profile Image URL: " + imgUrl);
+                findViewById(R.id.repLayout1).setVisibility(View.VISIBLE);
                 new DownloadImageTask((ImageButton) findViewById(R.id.repImageButton1))
                         .execute(imgUrl);
 
@@ -152,12 +137,13 @@ public class CongressionalActivity extends AppCompatActivity {
                         Log.d("CongressionalActivity", "Got tweet: " + result.toString());
                         Tweet tweet = result.data.get(0);
                         TweetView tweetView = new TweetView(CongressionalActivity.this, tweet);
-                        tweetParentView.addView(tweetView, 5);
+                        tweetParentView.addView(tweetView, 6);
                         String imgUrl = tweet.user.profileImageUrl;
                         imgUrl = imgUrl.replaceAll("_normal", "");
                         repList.get(1).imageUrl = imgUrl;
 //                        imgUrl = imgUrl.substring(0, imgUrl.length()-12) + ".jpeg"; // Remove _normal from end of url to get full-size image
                         Log.d("CongressionalActivity", "Twitter Profile Image URL: " + imgUrl);
+                        findViewById(R.id.repLayout2).setVisibility(View.VISIBLE);
                         new DownloadImageTask((ImageButton) findViewById(R.id.repImageButton2))
                                 .execute(imgUrl);
                         statusesService.userTimeline(null, repList.get(2).twitterId, 1, null, null, null, null, null, null, new Callback<List<Tweet>>() {
@@ -166,11 +152,12 @@ public class CongressionalActivity extends AppCompatActivity {
                                 Log.d("CongressionalActivity", "Got tweet: " + result.toString());
                                 Tweet tweet = result.data.get(0);
                                 TweetView tweetView = new TweetView(CongressionalActivity.this, tweet);
-                                tweetParentView.addView(tweetView, 7);
+                                tweetParentView.addView(tweetView, 8);
                                 String imgUrl = tweet.user.profileImageUrl;
                                 imgUrl = imgUrl.replaceAll("_normal", ""); // Remove _normal from end of url to get full-size image
                                 repList.get(2).imageUrl = imgUrl;
                                 Log.d("CongressionalActivity", "Twitter Profile Image URL: " + imgUrl);
+                                findViewById(R.id.repLayout3).setVisibility(View.VISIBLE);
                                 new DownloadImageTask((ImageButton) findViewById(R.id.repImageButton3))
                                         .execute(imgUrl);
                             }
@@ -214,37 +201,6 @@ public class CongressionalActivity extends AppCompatActivity {
             }
         });
     }
-//    public void getAndShowTweets() {
-//        ListView lv = (ListView) findViewById(R.id.twitterListView);
-//        final UserTimeline userTimeline = new UserTimeline.Builder()
-//                .screenName("ArchonNadia")
-//                .maxItemsPerRequest(1)
-//                .build();
-//        final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(this)
-//                .setTimeline(userTimeline)
-//                .build();
-//        lv.setAdapter(adapter);
-//        // TODO: Use a more specific parent
-////        final ViewGroup parentView = (ViewGroup) getWindow().getDecorView().getRootView();
-//        // TODO: Base this Tweet ID on some data from elsewhere in your app
-//        long tweetId = 707441229777215488L;
-////        String searchQuery = "";
-//        TweetUtils.loadTweet(tweetId, new Callback<Tweet>() {
-//            @Override
-//            public void success(Result<Tweet> result) {
-//                TweetView tweetView = new TweetView(CongressionalActivity.this, result.data);
-//                tweetParentView.addView(tweetView, 4);
-//                tweetView = new TweetView(CongressionalActivity.this, result.data);
-//                tweetParentView.addView(tweetView, 3);
-//                tweetView = new TweetView(CongressionalActivity.this, result.data);
-//                tweetParentView.addView(tweetView, 2);
-//            }
-//            @Override
-//            public void failure(TwitterException exception) {
-//                Log.d("TwitterKit", "Load Tweet failure", exception);
-//            }
-//        });
-//    }
 
     public void testThatWeGotReps() {
         for (int i = 0; i < repList.size(); i++) {
@@ -257,52 +213,63 @@ public class CongressionalActivity extends AppCompatActivity {
 
     private void updateLayout() {
         TextView tv = (TextView) findViewById(R.id.locationText);
+        tv.setText(county + ", " + stateAbr);
         ImageButton ib1 = (ImageButton) findViewById(R.id.repImageButton1);
         ImageButton ib2 = (ImageButton) findViewById(R.id.repImageButton2);
         ImageButton ib3 = (ImageButton) findViewById(R.id.repImageButton3);
         TextView tv1 = (TextView) findViewById(R.id.repText1);
         TextView tv2 = (TextView) findViewById(R.id.repText2);
         TextView tv3 = (TextView) findViewById(R.id.repText3);
-        tv.setText(county + ", " + stateAbr);
-        String reptext = buildRepText(repList.get(0));
 
-        ib1.setImageResource(R.drawable.frank);
+        String reptext = buildRepText(repList.get(0));
+//        ib1.setImageResource(R.drawable.frank);
         ib1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startDetailedActivity(repList.get(0));
             }
         });
-        tv1.setText(reptext);
-//        tv1.setText(getString(R.string.frank_congressional_placeholder));
+//        tv1.setText(reptext);
+        tv1.setText(Html.fromHtml(reptext));
+        tv1.setMovementMethod(LinkMovementMethod.getInstance());
+
         reptext = buildRepText(repList.get(1));
-        ib2.setImageResource(R.drawable.jim);
+//        ib2.setImageResource(R.drawable.jim);
         ib2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startDetailedActivity(repList.get(1));
             }
         });
-        tv2.setText(reptext);
-//        tv2.setText(getString(R.string.jim_congressional_placeholder));
+//        tv2.setText(reptext);
+        tv2.setText(Html.fromHtml(reptext));
+        tv2.setMovementMethod(LinkMovementMethod.getInstance());
+
         reptext = buildRepText(repList.get(2));
-        ib3.setImageResource(R.drawable.james);
+//        ib3.setImageResource(R.drawable.james);
         ib3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startDetailedActivity(repList.get(2));
             }
         });
-        tv3.setText(reptext);
-//        tv3.setText(getString(R.string.james_congressional_placeholder));
+//        tv3.setText(reptext);
+        tv3.setText(Html.fromHtml(reptext));
+        tv3.setLinksClickable(true);
+//        tv3.setMovementMethod(LinkMovementMethod.getInstance());
 //        }
     }
 
     public String buildRepText(Representative rep) {
         StringBuilder sb = new StringBuilder(32);
-        sb.append(rep.name + " (" + rep.party + ")\n\n");
-        sb.append("Email: " + rep.emailAddress + "\n");
-        sb.append("Website: " + rep.website + "\n");
+        if (rep.chamber.equalsIgnoreCase("house")) {
+            sb.append("<h2>Representative<br>" + rep.name + " (" + rep.party + ")</h2>");
+        } else {
+            sb.append("<h2>Senator<br>" + rep.name + " (" + rep.party + ")</h2>");
+        }
+        sb.append("<a href=\"mailto:" + rep.emailAddress + "\">Send Email</a>");
+        sb.append("  "); // Separate email and website hyperlinks
+        sb.append("<a href=\"" + rep.website + "\">View Website</a>");
         return sb.toString();
     }
 
@@ -362,11 +329,17 @@ public class CongressionalActivity extends AppCompatActivity {
         }
         Log.d("CongressionalActivity", "Obama Percentage: " + obamaPercent);
         Log.d("CongressionalActivity", "Romney Percentage: " + romneyPercent);
-        Intent watchServiceIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
-        watchServiceIntent.putExtra("Activity", "VoteActivity");
-        watchServiceIntent.putExtra("Votes", obamaPercent + ";" + romneyPercent + ";" + county + ";" + stateAbr);
+        if (obamaPercent <= 1) {
+            Log.d("CongressionalActivity", "Couldn't find vote results for " + county + " " + stateAbr);
+            Toast t = Toast.makeText(getBaseContext(), "No Vote Results Found", Toast.LENGTH_SHORT);
+            t.show();
+        } else {
+            Intent watchServiceIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
+            watchServiceIntent.putExtra("Activity", "VoteActivity");
+            watchServiceIntent.putExtra("Votes", obamaPercent + ";" + romneyPercent + ";" + county + ";" + stateAbr);
 //        watchServiceIntent.putExtra("RepSet", repSet);
-        startService(watchServiceIntent);
+            startService(watchServiceIntent);
+        }
     }
 
     @Override

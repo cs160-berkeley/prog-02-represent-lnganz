@@ -29,15 +29,12 @@ public class PhoneListenerService extends WearableListenerService {
         if (messageEvent.getPath() != null) {
             String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             String path = messageEvent.getPath();
+            String activity = path.replace("/", "");
             Log.d("T", "Message Received: " + value);
+            Log.d("T", "Path Received: " + path);
             if (value != null) {
                 Intent intent;
-                String[] values = value.split(";");
-                String activity = values[0];
-                Log.d("PhoneListenerService", "Parsed Activity: " + activity);
-                if (values.length > 1) {
-                    Log.d("PhoneListenerService", "Parsed RepName: " + values[1]);
-                }
+                Log.d("PhoneListenerService", "Parsed Activity: " + path);
                 if (activity.equals("CongressionalActivity")) {
                     intent = new Intent(getBaseContext(), CongressionalActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -45,7 +42,7 @@ public class PhoneListenerService extends WearableListenerService {
                     startActivity(intent);
                 } else if (activity.equals("DetailedActivity")) {
                     intent = new Intent(getBaseContext(), DetailedActivity.class);
-                    intent.putExtra("RepName", values[1]);
+                    intent.putExtra("RepNameFromWatch", value);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     Log.d("PhoneListenerService", "Starting Activity: DetailedActivity");
                     startActivity(intent);

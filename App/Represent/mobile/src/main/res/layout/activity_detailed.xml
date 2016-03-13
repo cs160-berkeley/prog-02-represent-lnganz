@@ -12,26 +12,36 @@
     android:weightSum="1"
     android:background="@drawable/flag">
 
-    <ImageView
-        android:layout_width="151dp"
-        android:layout_height="200dp"
-        android:id="@+id/repImage"
-        android:layout_weight="0.21"
-        android:layout_gravity="center_horizontal" />
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:background="@drawable/rounded_corner">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mark_detailed_placeholder"
-            android:id="@+id/repDetailedText"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/rounded_corner"
-            android:padding="10dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="231dp"
+                android:layout_height="200dp"
+                android:id="@+id/repImage"
+                android:layout_weight="0.10"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/repDetailedText"
+                android:padding="10dp"
+                android:enabled="true"
+                android:gravity="center_horizontal" />
+
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

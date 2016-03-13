@@ -19,7 +19,12 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp"
-        android:textColor="#000000" />
+        android:textColor="#EE000000"
+        android:textSize="22dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:text="Represent!"
+        android:textStyle="bold" />
 
     <android.support.wearable.view.GridViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"

@@ -9,6 +9,16 @@
     android:background="@drawable/flag"
     android:gravity="center">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Represent!"
+        android:id="@+id/titleText"
+        android:layout_gravity="center_horizontal"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        android:textColor="#ee000000" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +29,8 @@
         android:textColor="#ffffff"
         android:hint="ZIP Code"
         android:gravity="center"
-        android:layout_marginTop="200dp" />
+        android:layout_marginTop="220dp"
+        android:layout_marginBottom="5dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -27,12 +38,21 @@
         android:text="Use ZIP Code"
         android:id="@+id/zipButton"
         android:layout_gravity="center_horizontal"
-        android:onClick="useZipCode" />
+        android:onClick="useZipCode"
+        android:background="@drawable/textview_circular_design"
+        android:textColor="#ffffff"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_marginBottom="5dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Use Current Location"
         android:id="@+id/locationButton"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/textview_circular_design"
+        android:textColor="#ffffff" />
 </LinearLayout>

@@ -14,23 +14,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:weightSum="1"
-        android:id="@+id/repOuterLayout">
+        android:id="@+id/repOuterLayout"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View 2012 Vote Results"
+            android:id="@+id/voteButton"
+            android:onClick="startWatchVoteActivity"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/textview_circular_design"
+            android:textColor="#ffffff"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Location"
             android:id="@+id/locationText"
             android:layout_gravity="center_horizontal"
             android:typeface="normal"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:background="@drawable/rounded_corner"
-            android:paddingRight="50dp"
-            android:paddingLeft="50dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
+            android:textStyle="bold"
             android:layout_marginBottom="5dp" />
 
         <com.twitter.sdk.android.core.identity.TwitterLoginButton
@@ -38,7 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_gravity="center_horizontal|bottom" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -46,21 +61,22 @@
             android:layout_height="wrap_content"
             android:weightSum="1"
             android:background="@drawable/rounded_corner"
-            android:id="@+id/repLayout1">
+            android:id="@+id/repLayout1"
+            android:gravity="center_horizontal">
 
             <ImageButton
                 android:layout_width="100dp"
                 android:layout_height="110dp"
                 android:id="@+id/repImageButton1"
                 android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:onClick="startDetailedActivity" />
+                android:adjustViewBounds="true" />
 
             <TextView
                 android:layout_width="231dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/repText1"
-                android:text="@string/mark_congressional_placeholder" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:id="@+id/repText1" />
         </LinearLayout>
 
         <LinearLayout
@@ -70,21 +86,23 @@
             android:weightSum="1"
             android:background="@drawable/rounded_corner"
             android:layout_marginTop="10dp"
-            android:id="@+id/repLayout2">
+            android:id="@+id/repLayout2"
+            android:gravity="center_horizontal">
 
             <ImageButton
                 android:layout_width="100dp"
                 android:layout_height="110dp"
                 android:id="@+id/repImageButton2"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:onClick="startDetailedActivity" />
 
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true" />
+            <!--android:scaleType="fitCenter"-->
             <TextView
                 android:layout_width="231dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/repText2"
-                android:text="@string/dianne_congressional_placeholder" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:id="@+id/repText2" />
 
         </LinearLayout>
 
@@ -95,30 +113,24 @@
             android:weightSum="1"
             android:background="@drawable/rounded_corner"
             android:layout_marginTop="10dp"
-            android:id="@+id/repLayout3">
+            android:id="@+id/repLayout3"
+            android:gravity="center_horizontal">
 
             <ImageButton
                 android:layout_width="100dp"
                 android:layout_height="110dp"
                 android:id="@+id/repImageButton3"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:onClick="startDetailedActivity" />
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true" />
+            <!--android:scaleType="fitCenter"-->
 
             <TextView
                 android:layout_width="231dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/repText3"
-                android:text="@string/barbara_congressional_placeholder" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:id="@+id/repText3" />
         </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Vote Results For This Area"
-            android:id="@+id/voteButton"
-            android:layout_gravity="center_horizontal"
-            android:onClick="startWatchVoteActivity" />
 
     </LinearLayout>
 </ScrollView>

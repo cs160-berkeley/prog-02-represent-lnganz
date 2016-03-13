@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.represent.sigma.represent.VoteActivity"
     tools:deviceIds="wear_round"
-    android:background="@drawable/obamney">
+    android:background="@drawable/obamney2">
 
     <LinearLayout
         android:orientation="vertical"

@@ -25,36 +25,6 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
     private List mRows;
     private final Page[][] PAGES;
 
-    public MyGridPagerAdapter(Context ctx, FragmentManager fm) {
-        super(fm);
-        mContext = ctx;
-        // A simple container for static data in each page
-        // Create a static set of pages in a 2D array
-        PAGES = new Page[1][3];
-        PAGES[0][0] = new Page("Mark DeSaulnier", "(D)", R.drawable.test50x50, R.drawable.mark);
-        PAGES[0][1] = new Page("Diane Feinstein", "(D)", R.drawable.test50x50, R.drawable.diane);
-        PAGES[0][2] = new Page("Barbara Boxer", "(D)", R.drawable.test50x50, R.drawable.barbara);
-//        PAGES[1][0] = new Page(null, "TEXT1-0", R.drawable.ic_full_cancel, R.drawable.barbara);
-    }
-
-    public MyGridPagerAdapter(Context ctx, FragmentManager fm, int repSet) {
-        super(fm);
-        mContext = ctx;
-        // A simple container for static data in each page
-        // Create a static set of pages in a 2D array
-        PAGES = new Page[1][3];
-        if (repSet == 1) {
-            PAGES[0][0] = new Page("Mark DeSaulnier", "(D)", R.drawable.test50x50, R.drawable.mark);
-            PAGES[0][1] = new Page("Diane Feinstein", "(D)", R.drawable.test50x50, R.drawable.diane);
-            PAGES[0][2] = new Page("Barbara Boxer", "(D)", R.drawable.test50x50, R.drawable.barbara);
-        } else if (repSet == 2) {
-            PAGES[0][0] = new Page("Frank Lucas", "(R)", R.drawable.test50x50, R.drawable.frank);
-            PAGES[0][1] = new Page("Jim Inhofe", "(R)", R.drawable.test50x50, R.drawable.jim);
-            PAGES[0][2] = new Page("James Lankford", "(R)", R.drawable.test50x50, R.drawable.james);
-        }
-//        PAGES[1][0] = new Page(null, "TEXT1-0", R.drawable.ic_full_cancel, R.drawable.barbara);
-    }
-
     public MyGridPagerAdapter(Context ctx, FragmentManager fm, String reps) {
         super(fm);
         mContext = ctx;
@@ -63,19 +33,19 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
         PAGES = new Page[1][3];
         String[] repList = reps.split(";");
         if (repList[0].equalsIgnoreCase("house")) {
-            PAGES[0][0] = new Page("Representative\n" + repList[1], repList[2], R.drawable.test50x50, R.drawable.flag);
+            PAGES[0][0] = new Page("Representative<br>" + repList[1], repList[2], R.drawable.test50x50, R.drawable.flag);
         } else {
-            PAGES[0][0] = new Page("Senator\n" + repList[1], repList[2], R.drawable.test50x50, R.drawable.flag);
+            PAGES[0][0] = new Page("Senator<br>" + repList[1], repList[2], R.drawable.test50x50, R.drawable.flag);
         }
         if (repList[3].equalsIgnoreCase("house")) {
-            PAGES[0][1] = new Page("Representative\n" + repList[4], repList[5], R.drawable.test50x50, R.drawable.flag);
+            PAGES[0][1] = new Page("Representative<br>" + repList[4], repList[5], R.drawable.test50x50, R.drawable.flag);
         } else {
-            PAGES[0][1] = new Page("Senator\n" + repList[4], repList[5], R.drawable.test50x50, R.drawable.flag);
+            PAGES[0][1] = new Page("Senator<br>" + repList[4], repList[5], R.drawable.test50x50, R.drawable.flag);
         }
         if (repList[6].equalsIgnoreCase("house")) {
-            PAGES[0][2] = new Page("Representative\n" + repList[7], repList[8], R.drawable.test50x50, R.drawable.flag);
+            PAGES[0][2] = new Page("Representative<br>" + repList[7], repList[8], R.drawable.test50x50, R.drawable.flag);
         } else {
-            PAGES[0][2] = new Page("Senator\n" + repList[7], repList[8], R.drawable.test50x50, R.drawable.flag);
+            PAGES[0][2] = new Page("Senator<br>" + repList[7], repList[8], R.drawable.test50x50, R.drawable.flag);
 
         }
     }
@@ -119,17 +89,11 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
     @Override
     public Fragment getFragment(int row, int col) {
         Page page = PAGES[row][col];
-//        CardFragment fragment = MyCardFragment.create(page.title, page.text);
-//        CardFragment fragment = MyCardFragment.create(page.title, page.text);
         MyCardFragment fragment = new MyCardFragment();
         Bundle args = new Bundle();
         args.putString("Name", page.title);
         args.putString("Party", page.text);
         fragment.setArguments(args);
-//        fragment.setCardGravity(Gravity.BOTTOM);
-//        fragment.setExpansionEnabled(true);
-//        fragment.setExpansionDirection(CardFragment.EXPAND_DOWN);
-//        fragment.setExpansionFactor(3.0f);
 
         return fragment;
     }

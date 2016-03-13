@@ -12,14 +12,15 @@
 
     <TextView
         android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Mark DeSaulnier (D)"
+        android:text="Representative\nMark DeSaulnier (D)"
         android:id="@+id/cardRepName"
         android:layout_gravity="center_horizontal"
         android:background="#5c6bc0"
         android:textColor="#ffffff"
         android:gravity="center"
         android:textSize="16dp"
-        android:textIsSelectable="false" />
+        android:textIsSelectable="false"
+        android:padding="5dp" />
 </RelativeLayout>

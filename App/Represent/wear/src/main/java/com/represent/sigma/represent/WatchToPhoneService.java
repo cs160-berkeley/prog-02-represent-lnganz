@@ -37,26 +37,31 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null) {
+            toActivity = intent.getStringExtra("Activity");
+            task = intent.getStringExtra("Task");
+            repName = intent.getStringExtra("RepName");
+            if (repName == null) {
+                repName = "DefaultName";
+            }
+            if (toActivity == null || toActivity.equals("")) {
+                toActivity = "DEFAULT ACTIVITY";
+            }
+            if (task == null || task.equals("")) {
+                task = "DEFAULT TASK";
+            }
 
-        toActivity = intent.getStringExtra("Activity");
-        task = intent.getStringExtra("Task");
-        repName = intent.getStringExtra("RepName");
-
-        if (toActivity == null || toActivity.equals("")) {
-            toActivity = "DEFAULT ACTIVITY";
-        }
-        if (task == null || task.equals("")) {
-            task = "DEFAULT TASK";
-        }
-
-        Log.d("WatchToPhoneService", "Service Started");
-        if (started) {
-            String message = toActivity + ";" + repName;
-            Log.d("WatchToPhoneService", "Sending message: " + message);
-            sendMessage("/start_activity", message);
-//            sendMessage("/task", task);
-        } else {
-            started = true;
+            Log.d("WatchToPhoneService", "Service Started");
+            if (started) {
+                Log.d("WatchToPhoneService", "Sending message: " + repName);
+                if (repName != null) {
+                    sendMessage("/" + toActivity, repName);
+                } else {
+                    Log.d("WatchToPhoneService", "No Message To Send");
+                }
+            } else {
+                started = true;
+            }
         }
         return START_STICKY;
     }
@@ -102,7 +107,11 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         //when we find a connected node, we populate the list declared above
                         //finally, we can send a message
 //                        sendMessage("Activity", activity);
-                        sendMessage("/start_activity", toActivity + ";" + repName);
+                        if (repName != null) {
+                            sendMessage("/" + toActivity, repName);
+                        } else {
+                            Log.d("WatchToPhoneService", "No Message To Send");
+                        }
 //                        sendMessage("/task", task);
                         Log.d("T", "sent");
                     }

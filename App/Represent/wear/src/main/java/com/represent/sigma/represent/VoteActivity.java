@@ -13,27 +13,40 @@ public class VoteActivity extends Activity {
     public static boolean active = false;
 
     private TextView mTextView;
+    private String obamaVotes;
+    private String romneyVotes;
+    private String county;
+    private String state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
-        final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
-        stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
-            @Override
-            public void onLayoutInflated(WatchViewStub stub) {
-                mTextView = (TextView) stub.findViewById(R.id.text);
-                Intent intent = getIntent();
-                Bundle extras = intent.getExtras();
-                TextView tv = (TextView) findViewById(R.id.resultsText);
-                ProgressBar pb = (ProgressBar) findViewById(R.id.voteBar);
-                if (extras != null && extras.getInt("RepSet", 1) == 2) {
-                    tv.setText("Romney: 67%   Obama: 33%\nCanadian County, OK");
-                    pb.setProgress(67);
-                }
-            }
-        });
+        Intent intent = getIntent();
+        String voteString = intent.getStringExtra("Votes");
+        if (voteString != null) {
+            String[] parsedString = voteString.split(";");
+//            obamaVotes = parsedString[0];
+            obamaVotes = ((int)Double.parseDouble(parsedString[0])) + "";
+//            romneyVotes = parsedString[1];
+            romneyVotes = ((int)Double.parseDouble(parsedString[1])) + "";
+            county = parsedString[2];
+            state = parsedString[3];
 
+            final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
+            stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
+                @Override
+                public void onLayoutInflated(WatchViewStub stub) {
+                    mTextView = (TextView) stub.findViewById(R.id.text);
+                    TextView tv = (TextView) findViewById(R.id.resultsText);
+                    ProgressBar pb = (ProgressBar) findViewById(R.id.voteBar);
+                    String toDisplay = "Romney: " + romneyVotes + "%  Obama: " + obamaVotes + "%\n" + county + ", " + state;
+                    tv.setText(toDisplay);
+                    pb.setProgress(Integer.parseInt(romneyVotes));
+                }
+
+            });
+        }
 //        String location = extras.getString("Location");
 
     }
@@ -49,11 +62,4 @@ public class VoteActivity extends Activity {
         super.onStop();
         active = false;
     }
-//    public void launchDetailedView(View view) {
-//        System.out.println("VoteActivity button clicked");
-//        Intent intent = new Intent(getBaseContext(), WatchToPhoneService.class);
-//        intent.putExtra("Activity", "DetailedActivity");
-//        intent.putExtra("Representative", "Mark DeSaulnier");
-//        startService(intent);
-//    }
 }

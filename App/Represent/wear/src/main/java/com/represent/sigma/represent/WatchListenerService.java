@@ -38,29 +38,5 @@ public class WatchListenerService extends WearableListenerService {
             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(mainIntent);
         }
-//        if (value != null) {
-//            String [] values = value.split(";");
-//            String activity = values[0];
-//            int repSet = Integer.parseInt(values[1]);
-//            mainIntent = new Intent(this, MainActivity.class);
-//            mainIntent.putExtra("RepSet", repSet);
-//            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            Log.d("T", "about to start watch activity: MainActivity");
-//            startActivity(mainIntent);
-////            if (activity.equals("VoteActivity")) {
-////                voteIntent = new Intent(this, VoteActivity.class);
-////                voteIntent.putExtra("RepSet", repSet);
-////                voteIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////                Log.d("T", "about to start watch activity: VoteActivity");
-////                startActivity(voteIntent);
-////            }
-//            if (activity.equals("VoteActivity") || VoteActivity.active) {
-//                voteIntent = new Intent(this, VoteActivity.class);
-//                voteIntent.putExtra("RepSet", repSet);
-//                voteIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                Log.d("T", "about to start watch activity: VoteActivity");
-//                startActivity(voteIntent);
-//            }
-//        }
     }
 }

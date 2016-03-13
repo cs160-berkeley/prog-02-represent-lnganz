@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,7 +21,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DetailedActivity extends AppCompatActivity {
 
@@ -29,6 +34,8 @@ public class DetailedActivity extends AppCompatActivity {
     private Representative rep;
     private String committeesString;
     private String billsString;
+    private ArrayList<String> parsedBills;
+    private ArrayList<String> parsedCommittees;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +46,37 @@ public class DetailedActivity extends AppCompatActivity {
         //My Setup
         Intent intent = getIntent();
         rep = intent.getParcelableExtra("Representative");
-//        setTitle("Mark Desaulnier (D)");
-        setTitle(rep.name + " (" + rep.party + ")");
+        String repName = intent.getStringExtra("RepNameFromWatch");
+        if (repName != null) {
+            Log.d("DetailedActivity", "Started from watch, looking for rep: " + repName);
+            ArrayList<Representative> rList = CongressionalActivity.repList;
+            for (int i = 0; i < rList.size(); i++) {
+                if (rList.get(i).name.equals(repName)) {
+                    rep = rList.get(i);
+                }
+            }
+        }
+        parsedBills = new ArrayList<String>();
+        parsedCommittees = new ArrayList<String>();
 
-        getDetails();
+        if (rep != null) {
+            String titleText;
+            if (rep.chamber.equalsIgnoreCase("house")) {
+                titleText = "Representative " + rep.name + " (" + rep.party + ")";
+            } else if (rep.chamber.equalsIgnoreCase("senate")) {
+                titleText = "Senator " + rep.name + " (" + rep.party + ")";
+            } else {
+                titleText = rep.name + " (" + rep.party + ")";
+            }
+            setTitle(titleText);
 
-        String repName = intent.getStringExtra("RepName");
+            getDetails();
 //        ImageView iv = (ImageView) findViewById(R.id.repImage);
-        new DownloadImageTask((ImageView) findViewById(R.id.repImage))
-                .execute(rep.imageUrl);
+            new DownloadImageTask((ImageView) findViewById(R.id.repImage))
+                    .execute(rep.imageUrl);
+        } else {
+            Log.d("DetailedActivity", "Problem! No rep");
+        }
     }
 
     public void getDetails() {
@@ -120,7 +149,7 @@ public class DetailedActivity extends AppCompatActivity {
     }
 
     public void parseCommitteeJSONString(String jsonString) {
-        ArrayList<String> parsedCommittees = new ArrayList<String>();
+        parsedCommittees = new ArrayList<String>();
         try {
             JSONObject obj = new JSONObject(jsonString);
             JSONArray committees = obj.getJSONArray("results");
@@ -138,17 +167,20 @@ public class DetailedActivity extends AppCompatActivity {
     }
 
     public void parseBillsJSONString(String jsonString) {
-        ArrayList<String> parsedBills = new ArrayList<String>();
+        parsedBills = new ArrayList<String>();
         try {
             JSONObject obj = new JSONObject(jsonString);
             JSONArray bills = obj.getJSONArray("results");
             Log.d("DetailedActivity", "Bill: " + bills.toString());
             for (int i = 0; i < bills.length(); i++) {
                 JSONObject billsJSON = bills.getJSONObject(i);
-                String bName = billsJSON.getString("official_title");
+                String bName = billsJSON.getString("short_title");
+                if (bName == null || bName == "" || bName.equalsIgnoreCase("null")){
+                    bName = billsJSON.getString("official_title");
+                }
                 String date = billsJSON.getString("introduced_on");
                 Log.d("DetailedActivity", "Bill: " + bName);
-                parsedBills.add(date + ": " + bName);
+                parsedBills.add(date + "<br>" + bName);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -158,7 +190,7 @@ public class DetailedActivity extends AppCompatActivity {
     public void updateCommittees(ArrayList<String> committees) {
         StringBuilder sb = new StringBuilder(32);
         for (int i = 0; i < committees.size() && i < COMMITTEE_LIMIT; i++) {
-            sb.append(committees.get(i) + "\n");
+            sb.append(committees.get(i) + "<br><br>");
         }
         committeesString = sb.toString();
         updateText();
@@ -166,8 +198,22 @@ public class DetailedActivity extends AppCompatActivity {
 
     public void updateBills(ArrayList<String> bills) {
         StringBuilder sb = new StringBuilder(32);
+        SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat newFormat = new SimpleDateFormat("MMMM d, yyyy");
         for (int i = 0; i < bills.size() && i < BILL_LIMIT; i++) {
-            sb.append(bills.get(i) + "\n");
+//            sb.append(bills.get(i) + "<br>");
+            String currentBill = bills.get(i);
+            String dateString = currentBill.substring(0, 10);
+            String newDateString = dateString;
+            Log.d("DetailedActivity", "Bill date: " + dateString);
+            try {
+                Date oldDate = oldFormat.parse(dateString);
+                newDateString = newFormat.format(oldDate);
+            } catch (Exception e) {
+                Log.d("DetailedActivity", "Couldn't parse bill's date");
+            }
+            sb.append("<i>" + newDateString + "</i>" + currentBill.substring(10));
+            sb.append("<br><br>");
         }
         billsString = sb.toString();
         updateText();
@@ -175,14 +221,27 @@ public class DetailedActivity extends AppCompatActivity {
 
     public void updateText() {
         StringBuilder sb = new StringBuilder(32);
-        sb.append("Congressional Term Ends: " + rep.endDate + "\n\n");
-        sb.append("--Committees--\n");
+        sb.append("<h2>Congressional Term Ends On<br><i>");
+        SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat newFormat = new SimpleDateFormat("MMMM d, yyyy");
+        try {
+            Date oldDate = oldFormat.parse(rep.endDate);
+            String newDateString = newFormat.format(oldDate);
+            sb.append(newDateString);
+        } catch (Exception e) {
+            Log.d("DetailedActivity", "Couldn't parse endDate");
+            sb.append(rep.endDate);
+        }
+        sb.append("</i></h2>");
+        sb.append("<br>");
+        sb.append("<h2>Active Committees</h2>");
         sb.append(committeesString);
-        sb.append("\n--Recently Sponsored Bills--\n");
+        sb.append("<h2>Recently Sponsored Bills</h2>");
         sb.append(billsString);
+        String fullText = sb.toString();
 
         TextView tv = (TextView) findViewById(R.id.repDetailedText);
-        tv.setText(sb.toString());
+        tv.setText(Html.fromHtml(fullText));
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
