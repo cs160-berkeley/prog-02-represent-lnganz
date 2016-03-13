@@ -17,11 +17,11 @@ See "CS160 Represent! PROG-02-C" (https://www.youtube.com/watch?v=zQ0XvJKH0dE)
 <img src="screenshots/FirstLaunched.png" height="400" alt="Screenshot"/>
 <img src="screenshots/aftertwitterlogon.png" height="400" alt="Screenshot"/>
 <img src="screenshots/detailedview.png" height="400" alt="Screenshot"/>
-<img src="screenshots/watchviewrep.png" height="400" alt="Screenshot"/>
-<img src="screenshots/voteresults1.png" height="400" alt="Screenshot"/>
+<img src="screenshots/watchviewrep.png" height="300" alt="Screenshot"/>
+<img src="screenshots/voteresults1.png" height="300" alt="Screenshot"/>
 
 ## Acknowledgments
 
-Thanks to StackOverflow as always. Thanks to Google for having good Android documentation. Thanks to the CS160 staff for the API guides and some starter Watch-to-Phone interaction code.
-* Hat tip to anyone who's code was used
-* Any other support
+* Thanks to StackOverflow as always.
+* Thanks to Google for having good Android documentation.
+* Thanks to the Berkeley CS160 staff for the API guides and Watch-to-Phone interaction starter code.
